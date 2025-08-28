@@ -1,28 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NextGadget</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NextGadgets</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .left-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .right-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      color: white;
+    }
+
+    .nav-links span {
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .search-box input {
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background-color: #111;
+      color: white;
+      transition: left 0.3s ease;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .sidebar h2 {
+      margin-top: 60px;
+      font-size: 22px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .sidebar ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid #444;
+      cursor: pointer;
+    }
+
+    .main-content {
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>NextGadget</h1>
-    <p>Your source for tech reviews</p>
+    <div class="left-group">
+      <div class="menu-btn" onclick="openMenu()">&#9776;</div>
+      <div class="logo">nextgadgets.tech</div>
+    </div>
+    <div class="right-group">
+      <div class="nav-links">
+        <span>Blog</span>
+        <span>About</span>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+      </div>
+    </div>
   </header>
 
-  <section class="card">
-    <h2>Redmi Note 13 Review</h2>
-    <p>Amazing battery life, smooth UI, and strong camera performance.</p>
-  </section>
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="closeMenu()">&#10005;</span>
+    <h2>Menu</h2>
+    <ul>
+      <li>Mobiles</li>
+      <li>Laptops</li>
+      <li>Consoles</li>
+      <li>Reviews</li>
+      <li>Contact</li>
+    </ul>
+  </div>
 
-  <section class="card">
-    <h2>MacBook Air M2 Review</h2>
-    <p>Super fast, ultra-silent, great for productivity!</p>
-  </section>
+  <div class="main-content">
+    <h1>Welcome to NextGadgets</h1>
+    <p>Your ultimate tech review destination. Scroll down to explore more...</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dapibus metus, vel vulputate nulla pharetra id. Aliquam erat volutpat. Aenean a risus risus. Duis eget orci ut sapien ornare pharetra a nec turpis. Quisque iaculis lacus vitae nunc vehicula, non euismod enim suscipit. Nullam tempor magna ac lectus eleifend, a luctus quam hendrerit.</p>
+    <p>(More content below...)</p>
+  </div>
 
-  <footer>
-    <p>© 2025 NextGadget</p>
-  </footer>
+  <script>
+    function openMenu() {
+      document.getElementById('sidebar').classList.add('open');
+    }
+
+    function closeMenu() {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    // Close sidebar if clicked outside
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuBtn = document.querySelector('.menu-btn');
+
+      if (
+        sidebar.classList.contains('open') &&
+        !sidebar.contains(event.target) &&
+        !menuBtn.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+  </script>
+
 </body>
 </html>
